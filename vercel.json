@@ -10,6 +10,14 @@
     {
       "src": "/(.*)",
       "dest": "/index.html"
+    },
+    {
+      "src": "/game.js",
+      "dest": "/game.js"
+    },
+    {
+      "src": "/node_modules/phaser/dist/phaser.min.js",
+      "dest": "/node_modules/phaser/dist/phaser.min.js"
     }
   ]
 }
