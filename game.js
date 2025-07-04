@@ -9,11 +9,14 @@ const config = {
   },
   scene: {
     preload: function () {
+      console.log('Preloading assets...');
       this.load.image('moose', 'moose.png');
       this.load.image('platform', 'my_platform.png');
+      this.load.image('background', 'background.png');
     },
     create: function () {
-      this.add.image(400, 300, 'background.png');
+      console.log('Creating game...');
+      this.add.image(400, 300, 'background');
       this.platform = this.physics.add.staticGroup();
       this.platform.create(400, 568, 'platform').setScale(1).refreshBody();
       this.player = this.physics.add.sprite(400, 500, 'moose');
