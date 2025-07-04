@@ -38,7 +38,6 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Moose Speedrun: Acorn Chase")
 clock = pygame.time.Clock()
-pygame.mixer.init()  # Ініціалізація звуку
 
 # Завантаження звукових ефектів і музики
 menu_music = pygame.mixer.music.load("menu_music.mp3") if os.path.exists("menu_music.mp3") else None

@@ -1,0 +1,23 @@
+{
+  "name": "moosespeedrungame",
+  "version": "1.0.0",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veronuka435/MooseSpeedrunGame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Veronuka435/MooseSpeedrunGame/issues"
+  },
+  "homepage": "https://github.com/Veronuka435/MooseSpeedrunGame#readme",
+  "description": "",
+  "dependencies": {
+    "phaser": "^3.90.0"
+  }
+}
