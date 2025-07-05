@@ -5,38 +5,63 @@ const config = {
   parent: 'phaser-example',
   physics: {
     default: 'arcade',
-    arcade: { gravity: { y: 300 } }
+    arcade: {
+      gravity: { y: 500 },
+      debug: false
+    }
   },
   scene: {
-    preload: function () {
-      console.log('Preloading assets...');
-      this.load.image('moose', 'moose.png');
-      this.load.image('platform', 'my_platform.png');
-      this.load.image('background', 'background.png');
-    },
-    create: function () {
-      console.log('Creating game...');
-      this.add.image(400, 300, 'background');
-      this.platform = this.physics.add.staticGroup();
-      this.platform.create(400, 568, 'platform').setScale(1).refreshBody();
-      this.player = this.physics.add.sprite(400, 500, 'moose');
-      this.player.setBounce(0.2);
-      this.player.setCollideWorldBounds(true);
-      this.physics.add.collider(this.player, this.platform);
-    },
-    update: function () {
-      let cursors = this.input.keyboard.createCursorKeys();
-      if (cursors.left.isDown) {
-        this.player.setVelocityX(-160);
-      } else if (cursors.right.isDown) {
-        this.player.setVelocityX(160);
-      } else {
-        this.player.setVelocityX(0);
-      }
-      if (cursors.up.isDown && this.player.body.touching.down) {
-        this.player.setVelocityY(-330);
-      }
-    }
+    preload,
+    create,
+    update
   }
 };
+
+let player;
+let cursors;
+let platforms;
+
 const game = new Phaser.Game(config);
+
+function preload() {
+  // Завантаження зображень
+  this.load.image('background', 'background.png');
+  this.load.image('platform', 'my_platform.png');
+  this.load.image('moose', 'moose.png');
+}
+
+function create() {
+  // Фон
+  this.add.image(400, 300, 'background');
+
+  // Платформи (група)
+  platforms = this.physics.add.staticGroup();
+  platforms.create(400, 568, 'platform').setScale(1).refreshBody();
+
+  // Гравець
+  player = this.physics.add.sprite(100, 450, 'moose');
+  player.setBounce(0.2);
+  player.setCollideWorldBounds(true);
+
+  // Клавіші
+  cursors = this.input.keyboard.createCursorKeys();
+
+  // Колізія з платформами
+  this.physics.add.collider(player, platforms);
+}
+
+function update() {
+  // Рух вліво/вправо
+  if (cursors.left.isDown) {
+    player.setVelocityX(-160);
+  } else if (cursors.right.isDown) {
+    player.setVelocityX(160);
+  } else {
+    player.setVelocityX(0);
+  }
+
+  // Стрибок
+  if (cursors.up.isDown && player.body.touching.down) {
+    player.setVelocityY(-350);
+  }
+}
